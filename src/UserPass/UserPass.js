@@ -39,6 +39,8 @@ const UserPass = (props)=>{
         if(result.success){
             if(location === '/login'){
                 localStorage.setItem('token',result.token);
+                localStorage.setItem('id', result.id);
+
             }
             navigate('/');
         }
