@@ -1,0 +1,65 @@
+
+.sudoku-board{
+    display: grid; 
+    margin-left: 3%;
+}
+
+.sudoku-board-sudoku-grid {
+    grid-row: 1 / 8; 
+    grid-column: 1;
+}
+
+.difficulty-selector {
+    grid-row: 1; 
+    grid-column: 4; 
+}
+.sudoku-board-magnified-cell{
+    grid-row: 1;
+    grid-column: 3;
+}
+
+.sudoku-board-sudoku-pad {
+    grid-row: 5 / 8;
+    grid-column: 2;
+}
+
+.hint-box {
+    grid-row: 2;
+    grid-column: 4;
+}
+
+
+@media screen and (max-width: 800px) {
+    .sudoku-board{
+        margin-left: 0; 
+        grid-template-columns: 100vh;
+    }
+
+    .sudoku-board-magnified-cell {
+        display: none;
+    }
+
+    
+    .sudoku-board-sudoku-grid {
+        grid-row: 2 / 8; 
+        grid-column: 1;
+    }
+    
+    .difficulty-selector {
+        grid-row: 1; 
+        grid-column: 1;
+
+    }
+    
+    .sudoku-board-sudoku-pad {
+        grid-row: 9 / 12;
+        grid-column: 1;
+
+    }
+    
+    .hint-box {
+        grid-row: 13; 
+        grid-column: 1; 
+    }
+
+}

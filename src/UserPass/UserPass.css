@@ -1,0 +1,48 @@
+
+.userpass {
+    width: 100%;
+    position: relative;
+    padding: 0;
+}
+
+.userpass-container {
+    position: relative;
+    width: 40vw;
+}
+
+.userpass-fields-container { 
+    background-color: grey;
+    padding-top: .5vw;
+    text-align: center;
+    width: 10vw; 
+    top: 200px;
+    left: 300px;
+    position: absolute; 
+    z-index: 1;
+    border: solid black 1px; 
+    border-radius: 10px;
+}
+
+.userpass-fields-container input, .userpass-fields-container button {
+    display:block;
+    margin-left: 1vw;
+    margin-bottom: .5vw;
+    padding: 10px 12px; 
+    border: none; 
+    border: solid black 1px; 
+    border-radius: 10px;
+
+}
+
+
+.userpass-fields-container input:focus, .userpass-fields-container input:hover, .userpass-fields-container button:focus, .userpass-fields-container button:hover{
+    border: 2px #0285F1 solid;
+}
+
+
+.userpass-img {
+    z-index: -1;
+    position:absolute;
+    top: 0;
+    left: 0;
+}

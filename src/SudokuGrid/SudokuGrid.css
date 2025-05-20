@@ -1,0 +1,105 @@
+.grid-div {
+    display: grid; 
+    grid-template-columns: 60px 60px 60px 60px 60px 60px 60px 60px 60px;
+    background-color: rgba(0, 0, 0, .3);
+    column-gap: 5px;
+    row-gap: 5px;
+    border-top: black 5px solid; 
+    border-left: black 5px solid; 
+    border-bottom: black 5px solid; 
+    border-right: black 5px solid; 
+    width: 580px;
+    padding-left:0;
+    padding-right: 0;
+    z-index: 1;
+}
+.grid-div div {
+    position: relative;
+    z-index: 3;
+}
+
+.grid-hor-bar {
+    position: absolute;
+    z-index: 2;
+    height: 5px; 
+    width: 590px;
+    background-color: black;
+}
+
+#grid-first-hor-bar {
+    margin-top: 195px;
+}
+
+#grid-second-hor-bar {
+    margin-top: 390px;
+}
+
+.grid-ver-bar {
+    position: absolute;
+    z-index: 2;
+    height: 590px; 
+    width: 5px;
+    background-color: black;
+}
+
+#grid-first-ver-bar {
+    margin-left: 195px;
+}
+
+#grid-second-ver-bar {
+    margin-left: 390px;
+}
+
+
+@media screen and (max-width: 800px){
+      
+    .grid-div {
+        display: grid; 
+        grid-template-columns: 10vw 10vw 10vw 10vw 10vw 10vw 10vw 10vw 10vw;
+        background-color: rgba(0, 0, 0, .3);
+        column-gap: 1vw;
+        row-gap: 1vw;
+        border-top: black 1vw solid; 
+        border-left: black 1vw solid; 
+        border-bottom: black 1vw solid; 
+        border-right: black 1vw solid; 
+        margin-left: 0;
+        width: 98vw;
+        height: 100vw; 
+        padding-left:0;
+        padding-right: 0;
+        z-index: 1;
+    } 
+
+    .grid-hor-bar {
+        position: absolute;
+        z-index: 2;
+        height: 1vw; 
+        width: 100vw;
+        background-color: black;
+        margin-left: 0;
+    }
+    .grid-ver-bar {
+        position: absolute;
+        z-index: 2;
+        height: 101.1vw; 
+        width: 1vw;
+        background-color:black;
+    }
+    
+    #grid-first-ver-bar {
+        margin-left: 33vw;
+    }
+    
+    #grid-second-ver-bar {
+        margin-left: 66vw;
+    }
+
+    #grid-first-hor-bar {
+        margin-top: 33.6vw;
+    }
+    
+    #grid-second-hor-bar {
+        margin-top: 67.2vw;
+    }
+}

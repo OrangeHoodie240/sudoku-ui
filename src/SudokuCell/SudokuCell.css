@@ -1,0 +1,80 @@
+
+.outer-cell {
+    background-color: white; 
+    width: 60px; 
+    height: 60px;
+    font-size: 20px;
+}
+
+
+.upper-cell {
+    text-align: center;
+    width: 100%;
+    height: 60%;
+}
+
+.lower-cell {
+    text-align: center;
+    width: 100%; 
+    height: 40%;
+    font-size: .4rem;
+    word-wrap: break-word;
+}
+
+.selected-cell {
+    background-color: rgb(248, 248, 126);
+}
+
+.invalid-cell {
+    background-color: rgb(241, 105, 105);
+}
+
+.given {
+    color: slateblue;
+}
+
+.hintCell {
+    background-color: rgba(88, 236, 88, 0.884);
+}
+
+
+@media screen and (max-width: 800px){
+    .outer-cell {
+        background-color: white; 
+        width: 10vw; 
+        height: 10vw;
+        font-size: 20px;
+    }
+    
+    
+    .upper-cell {
+        text-align: center;
+        width: 100%;
+        height: 60%;
+    }
+    
+    .lower-cell {
+        text-align: center;
+        width: 100%; 
+        height: 40%;
+        font-size: .4rem;
+        word-wrap: break-word;
+    }
+    .selected-cell {
+        background-color: rgb(248, 248, 126);
+    }
+    
+    .invalid-cell {
+        background-color: rgb(241, 105, 105);
+    }
+    
+    .given {
+        color: slateblue;
+    }
+    
+    .hintCell {
+        background-color: rgba(88, 236, 88, 0.884);
+    }
+    
+    
+}

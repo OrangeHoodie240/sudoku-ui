@@ -1,0 +1,13 @@
+
+
+.teleporter-effect { 
+    z-index: 2;
+    position:absolute;
+    background-color: lightblue;
+}
+
+.teleporter-effect-recursive {
+    z-index: 2;
+    position:absolute;
+    background-color: lightyellow;
+}

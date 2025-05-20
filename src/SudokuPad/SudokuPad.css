@@ -1,0 +1,40 @@
+.sudoku-pad-values:focus, .sudoku-pad-notes:focus {
+    outline: none;
+}
+
+
+
+.sudoku-pad-notes, .sudoku-pad-values {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: black;
+    column-gap: 3px;
+    row-gap: 3px;
+    border: black solid 2px;
+}
+
+.sudoku-pad-notes div, .sudoku-pad-values div{
+    background-color: gray;
+    border: solid white 1px;
+    border-radius: 5%; 
+    text-align: center;
+    padding: 30px;
+}
+
+button:disabled {
+    background-color: black;
+    color: white;
+}
+
+@media screen and (max-width: 800px) {
+    .sudoku-pad-notes, .sudoku-pad-values {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100vw; 
+    }
+    .sudoku-pad-notes div, .sudoku-pad-values div{
+        padding: 10px;
+    }
+}
