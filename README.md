@@ -1,3 +1,6 @@
+Making a new UI for a sudoku application I made a few years ago. The original UI, which was more of an afterthought to meet a bootcamp project deadline when I spent most of the time on the generator/analyzer, is available at https://github.com/OrangeHoodie240/sudoku-react. I have taken much from that ui and am integrating it in this one, so much of the current codebase will be heavily refactored very shortly.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
