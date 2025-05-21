@@ -9,7 +9,12 @@ function SubBanner({puzzleInfo, header}){
     
 
     async function onSavePuzzle(evt) {
-        const puzzle = puzzleInfo.puzzle;
+        const notes = {};
+        for(let key in puzzleInfo.notes){
+            notes[key] = new Array(...puzzleInfo.notes[key]).join(''); 
+        }
+
+        const puzzle = {puzzleCells: puzzleInfo.puzzle, puzzleNotes: notes};
         const level = puzzleInfo.level;
         const puzzleId = puzzleInfo.puzzleId;
         const id = localStorage.getItem('id');

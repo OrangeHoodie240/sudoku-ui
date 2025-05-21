@@ -13,8 +13,6 @@ function App() {
   const [viewSavedPuzzles, setViewSavedPuzzles] = React.useState(false);
   const [isSavedPuzzleUsed, setIsSavedPuzzleUsed] = React.useState(false);
   const [_, setRerenderState] = React.useState(false);
-
-
           //   {/* <div style={{width: '500px', height: '500px', backgroundColor: 'red'}}></div>
           //  */}
 
@@ -33,7 +31,7 @@ function App() {
           <Route exact path="/" element={<Teleporter><SudokuBoard setIsSavedPuzzleUsed={setIsSavedPuzzleUsed} setPuzzleInfo={setPuzzleInfo} puzzleInfo={puzzleInfo} /></Teleporter>}></Route>
           <Route exact path="/new-account" element={<UserPass />} />
           <Route exact path="/login" element={<UserPass />} />
-          <Route exact path="/saved-puzzles" element={<SavedPuzzles setPuzzleInfo={setPuzzleInfo} />} />
+          <Route exact path="/saved-puzzles" element={<SavedPuzzles setPuzzleInfo={setPuzzleInfo}/>} />
         </Routes>
 
 

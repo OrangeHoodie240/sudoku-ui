@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { convertTo2DArray } from "../helpers";
+import { convertDBPuzzle } from "../helpers";
 import { useNavigate } from "react-router-dom";
 const SavedPuzzles = ({ setPuzzleInfo }) => {
     const [savedPuzzles, setSavedPuzzles] = React.useState([]);
@@ -31,11 +31,11 @@ const SavedPuzzles = ({ setPuzzleInfo }) => {
         target = target.parentElement;
         const level = target.getAttribute('data-level');
         let puzzle = target.getAttribute('data-puzzle');
-        puzzle = convertTo2DArray(puzzle);
+        let notes; 
+        [puzzle, notes] = convertDBPuzzle(puzzle);
         const puzzleId = +(target.getAttribute('data-puzzle-id'));
-        setPuzzleInfo({ level, puzzle, puzzleId });
         localStorage.setItem('last-active-saved-puzzle-id', puzzleId);
-
+        setPuzzleInfo(p => ({ level, puzzle, puzzleId, notes }));
         navigate('/');
     }
 

@@ -1,10 +1,10 @@
 import React from "react";
 import SudokuGrid from "../SudokuGrid/SudokuGrid";
 import SudokuPad from "../SudokuPad/SudokuPad";
-import MagnifiedCell from "../MagnifiedCell/MagnifiedCell";
-import getPuzzle, { copySudoku, isBoardFull, isBoardValid, flattenPuzzle, getSpecificPuzzle } from "../helpers";
+import getPuzzle, { copySudoku, isBoardFull, isBoardValid, getSpecificPuzzle } from "../helpers";
 import './SudokuBoard.css';
 import HintBox from "../HintBox/HintBox";
+import MagnifiedCell from '../MagnifiedCell/MagnifiedCell';
 
 const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
     const [selectedCell, setSelectedCell] = React.useState(null);
@@ -121,6 +121,7 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
             let puzzle = null;
             let level = null;
             let puzzleId = null;
+            let notes = null; 
 
             let originalPuzzle = null;
             if (!puzzleInfo) {
@@ -135,7 +136,7 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
                 level = puzzleInfo.level;
                 puzzle = puzzleInfo.puzzle;
                 puzzleId = puzzleInfo.puzzleId;
-
+                notes = puzzleInfo.notes; 
                 originalPuzzle = await getSpecificPuzzle(level, puzzleId); 
                 originalPuzzle = originalPuzzle.puzzle; 
             }
@@ -144,7 +145,7 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
             setPuzzleId(puzzleId);
             setLevel(level);
             if (setPuzzleInfo) {
-                setPuzzleInfo({ puzzle: copySudoku(puzzle), level, puzzleId });
+                setPuzzleInfo({ puzzle: copySudoku(puzzle), level, puzzleId, notes });
             }
         }
         loadPuzzle();
@@ -156,7 +157,7 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
         <div className='sudoku-board'>
 
             <div className='sudoku-board-sudoku-grid'>
-                <SudokuGrid setHintCell={setHintCell} hintCell={hintCell} setSelectedCell={setSelectedCell} invalidCell={invalidCell} sudoku={sudoku} originalSudoku={orignialSudoku.current} />
+                <SudokuGrid setHintCell={setHintCell} hintCell={hintCell} setSelectedCell={setSelectedCell} invalidCell={invalidCell} sudoku={sudoku} puzzleInfo={puzzleInfo} originalSudoku={orignialSudoku.current} />
             </div>
             {isOn ?
                 null
@@ -173,10 +174,10 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
             <div className='hint-box'>
                 {isOn ? null : <HintBox sudoku={sudoku} selectedCell={selectedCell} hintCell={hintCell} setHintCell={setHintCell} setSelectedCell={setSelectedCell} />}
             </div>
-            {/* {isOn ? 
+            {isOn ? 
                 null : 
                 selectedCell ? <div className='sudoku-board-magnified-cell'><MagnifiedCell selectedCell={selectedCell} /></div> : null
-            } */}
+            }
             <div className='clearFloat'></div>
 
             <div className='sudoku-board-sudoku-pad'>

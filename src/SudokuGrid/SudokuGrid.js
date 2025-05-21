@@ -3,9 +3,8 @@ import SudokuCell from "../SudokuCell/SudokuCell";
 import './SudokuGrid.css';
 
 
-const SudokuGrid = ({ setSelectedCell, sudoku, originalSudoku, invalidCell, hintCell, setHintCell }) => {
+const SudokuGrid = ({ setSelectedCell, sudoku, originalSudoku, invalidCell, hintCell, setHintCell, puzzleInfo }) => {
     const gridDiv = React.useRef(null);
-
 
 
     function onClick({ target }) {
@@ -46,7 +45,8 @@ const SudokuGrid = ({ setSelectedCell, sudoku, originalSudoku, invalidCell, hint
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
             let given = (originalSudoku[i][j] !== '0') ? true : false;
-            gridArray.push(<SudokuCell key={i + '-' + j} cellRow={i} cellCol={j} value={sudoku[i][j]} given={given} />);
+            const notes = puzzleInfo && puzzleInfo.notes && puzzleInfo.notes[i + '' + j] ? new Array(...puzzleInfo.notes[i + '' + j]).join('') : '';
+            gridArray.push(<SudokuCell key={i + '-' + j} cellRow={i} cellCol={j} value={sudoku[i][j]} given={given} notes={notes} />);
         }
     }
 
