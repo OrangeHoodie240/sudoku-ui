@@ -62,6 +62,24 @@ const SudokuPad = ({ selectedCell, sudoku, setSudoku, update, setPuzzleInfo}) =>
         if (!['1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(key)) {
             if(set.hasOwnProperty(evt.key)){
                 onKeyUpNote(set[evt.key]);
+                const cellId = selectedCell.id.split('-').slice(2).join('');
+                const noteValue = "" +set[evt.key]; 
+                setPuzzleInfo(p => {
+                    const newP = {...p}; 
+                    if(!newP.notes){
+                        newP.notes = {}; 
+                    }
+                    if(!newP.notes[cellId]){
+                        newP.notes[cellId] = new Set();
+                    }
+                    if(newP.notes[cellId].has(noteValue)){
+                        newP.notes[cellId].delete(noteValue);
+                    }
+                    else{
+                        newP.notes[cellId].add(noteValue);
+                    }
+                    return newP; 
+                });
             }
             return;
         }
@@ -77,18 +95,20 @@ const SudokuPad = ({ selectedCell, sudoku, setSudoku, update, setPuzzleInfo}) =>
                 newInfo.puzzleId = puzzleInfo.puzzleId; 
                 newInfo.level = puzzleInfo.level; 
                 newInfo.puzzle = copySudoku(sudoku); 
+                newInfo.notes = puzzleInfo.notes; 
                 return newInfo;
             });
             return;
         }
         upperCellOfSelectedCell.innerText = key;
         sudoku[row][col] = key;
-        setSudoku(copySudoku(sudoku));
+        setSudoku(x => copySudoku(sudoku));
         setPuzzleInfo(puzzleInfo => {
             const newInfo = {};
             newInfo.puzzleId = puzzleInfo.puzzleId; 
             newInfo.level = puzzleInfo.level; 
             newInfo.puzzle = copySudoku(sudoku); 
+            newInfo.notes = puzzleInfo.notes;
             return newInfo;
         });
     }
@@ -101,7 +121,7 @@ const SudokuPad = ({ selectedCell, sudoku, setSudoku, update, setPuzzleInfo}) =>
             lowerCellOfSelectedCell.setAttribute('data-notes', noteValue);
             lowerCellOfSelectedCell.innerText = noteValue;
             update(Math.random());
-            return;
+            return ;
         }
         lowerCellNotes = lowerCellNotes.split(',');
         let lowerCellNotesLength = lowerCellNotes.length;

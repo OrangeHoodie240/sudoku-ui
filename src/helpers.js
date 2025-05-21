@@ -151,6 +151,15 @@ function isBoardValid(sudoku) {
     return true;
 }
 
+function convertDBPuzzle(puzzle){
+    puzzle = JSON.parse(puzzle); 
+    let newNotes = {};
+    for(let key in puzzle.puzzleNotes){
+        newNotes[key] = new Set(puzzle.puzzleNotes[key].split(''));
+    }
+    return [puzzle.puzzleCells, newNotes];
+}
+
 function convertTo2DArray(puzzle){
     puzzle = puzzle.split(',');
     let puzzleArray = [];
@@ -165,4 +174,4 @@ function convertTo2DArray(puzzle){
 }
 
 export default getPuzzle;
-export { copySudoku, isBoardFull, isBoardValid, flattenPuzzle, convertTo2DArray, getSpecificPuzzle };
+export { copySudoku, isBoardFull, isBoardValid, flattenPuzzle, convertTo2DArray, getSpecificPuzzle, convertDBPuzzle };

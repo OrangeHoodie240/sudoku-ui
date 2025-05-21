@@ -3,8 +3,9 @@
     height: 10%; 
     background-color: #0285F1; 
     padding-top:1%; 
-    text-align: center;
     padding-bottom:1%;
+    text-align: center;
+
 }
 
 .banner-header {
@@ -17,9 +18,15 @@
     height:150px; 
 }
 
+.banner-buttons-div{
+    text-align:left; 
+}
+
 .banner-button-div{
     width: 100%; 
     color: white; 
+    display: inline; 
+    margin-left: 20px; 
 }
 
 .banner-button-div a{
