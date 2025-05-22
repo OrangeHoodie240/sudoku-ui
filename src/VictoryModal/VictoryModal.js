@@ -18,9 +18,10 @@ const VictoryModal = ({setShowVictory, selectPuzzle, puzzleInfo})=>{
         };
     }, []);
     
-    function onClick(){
-        setShowVictory(x => !x);
-        selectPuzzle({target: {value: puzzleInfo.level}});
+    async function onClick(){
+        await selectPuzzle({target: {value: puzzleInfo.level}})
+        setShowVictory(x=>!x);
+       
     }
 
     return (
