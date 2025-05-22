@@ -7,6 +7,7 @@ import {Routes, Route} from 'react-router-dom';
 import UserPass from './UserPass/UserPass.js';
 import SubBanner from './SubBanner/SubBanner.js';
 import SavedPuzzles from './SavedPuzzles/SavedPuzzles.js';
+import BoardBackground from './BoardBackground/BoardBackground.js';
 
 function App() {
   const [puzzleInfo, setPuzzleInfo] = React.useState(null); 
@@ -28,10 +29,10 @@ function App() {
       <div style={{paddingTop: '2%', paddingLeft: '35%', paddingRight: '20%', width: '100%'}}>
         
         <Routes>
-          <Route exact path="/" element={<Teleporter><SudokuBoard setIsSavedPuzzleUsed={setIsSavedPuzzleUsed} setPuzzleInfo={setPuzzleInfo} puzzleInfo={puzzleInfo} /></Teleporter>}></Route>
+          <Route exact path="/" element={<BoardBackground><SudokuBoard setIsSavedPuzzleUsed={setIsSavedPuzzleUsed} setPuzzleInfo={setPuzzleInfo} puzzleInfo={puzzleInfo} /></BoardBackground>}></Route>
           <Route exact path="/new-account" element={<UserPass />} />
           <Route exact path="/login" element={<UserPass />} />
-          <Route exact path="/saved-puzzles" element={<SavedPuzzles setPuzzleInfo={setPuzzleInfo}/>} />
+          <Route exact path="/saved-puzzles" element={<SavedPuzzles setPuzzleInfo={setPuzzleInfo} puzzleInfo={puzzleInfo} />} />
         </Routes>
 
 

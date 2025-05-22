@@ -46,3 +46,7 @@
     top: 0;
     left: 0;
 }
+
+.userpass-errors {
+    color:red; 
+}

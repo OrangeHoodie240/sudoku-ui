@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { convertDBPuzzle } from "../helpers";
 import { useNavigate } from "react-router-dom";
-const SavedPuzzles = ({ setPuzzleInfo }) => {
+import SudokuGrid from "../SudokuGrid/SudokuGrid";
+import './SavedPuzzles.css';
+
+const SavedPuzzles = ({ setPuzzleInfo, puzzleInfo }) => {
     const [savedPuzzles, setSavedPuzzles] = React.useState([]);
     const navigate = useNavigate();
 
@@ -80,7 +83,14 @@ const SavedPuzzles = ({ setPuzzleInfo }) => {
 
 
     const puzzleList = savedPuzzles.map(puzzle => {
-        return <li data-level={puzzle.level} data-puzzle={puzzle.puzzle} data-puzzle-id={puzzle.puzzle_id}>Puzzle Level {puzzle.level} <button onClick={onLoadPuzzle}>Load</button> <button onClick={onDeletePuzzle}>Delete</button></li>;
+        const {puzzleCells, puzzleNotes} = JSON.parse(puzzle.puzzle); 
+        return (
+        <li className="saved-puzzles-li" data-level={puzzle.level} data-puzzle={puzzle.puzzle} data-puzzle-id={puzzle.puzzle_id}>Puzzle Level {puzzle.level} <button onClick={onLoadPuzzle}>Load</button> <button onClick={onDeletePuzzle}>Delete</button>
+                <div style={{marginTop: '10px'}}>
+                    <SudokuGrid puzzleInfo={{puzzle: puzzleCells, notes: puzzleNotes}} />
+                </div>
+            
+        </li>);
     });
 
     return (<div id='saved-puzzles'>

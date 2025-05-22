@@ -1,11 +1,11 @@
 import React from 'react';
 import './SubBanner.css';
-
+import {useLocation} from 'react-router-dom';
 
 
 function SubBanner({puzzleInfo, header}){
     const token = localStorage.getItem('token'); 
-
+    const location = useLocation();
     
 
     async function onSavePuzzle(evt) {

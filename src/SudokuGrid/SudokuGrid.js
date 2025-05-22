@@ -3,9 +3,9 @@ import SudokuCell from "../SudokuCell/SudokuCell";
 import './SudokuGrid.css';
 
 
-const SudokuGrid = ({ setSelectedCell, sudoku, originalSudoku, invalidCell, hintCell, setHintCell, puzzleInfo }) => {
-    const gridDiv = React.useRef(null);
+const SudokuGrid = ({ setSelectedCell, originalSudoku, invalidCell, hintCell, setHintCell, puzzleInfo}) => {
 
+    const gridDiv = React.useRef(null);
 
     function onClick({ target }) {
         if (target !== gridDiv) {
@@ -41,20 +41,24 @@ const SudokuGrid = ({ setSelectedCell, sudoku, originalSudoku, invalidCell, hint
         }
     }
 
+    React.useEffect(() => {
+        gridDiv.current = document.getElementById('grid-div');
+    }, []);
+
+    if(!puzzleInfo) return null;
+
+
     const gridArray = [];
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
-            let given = (originalSudoku[i][j] !== '0') ? true : false;
+            let given = (originalSudoku && originalSudoku[i][j] !== '0') ? true : false;
             const notes = puzzleInfo && puzzleInfo.notes && puzzleInfo.notes[i + '' + j] ? new Array(...puzzleInfo.notes[i + '' + j]).join('') : '';
-            gridArray.push(<SudokuCell key={i + '-' + j} cellRow={i} cellCol={j} value={sudoku[i][j]} given={given} notes={notes} />);
+            gridArray.push(<SudokuCell key={i + '-' + j} cellRow={i} cellCol={j} value={puzzleInfo.puzzle[i][j]} given={given} notes={notes} />);
         }
     }
 
 
 
-    React.useEffect(() => {
-        gridDiv.current = document.getElementById('grid-div');
-    }, []);
 
 
 
@@ -64,7 +68,7 @@ const SudokuGrid = ({ setSelectedCell, sudoku, originalSudoku, invalidCell, hint
             <div className='grid-hor-bar' id='grid-second-hor-bar'></div>
             <div className='grid-ver-bar' id='grid-first-ver-bar'></div>
             <div className='grid-ver-bar' id='grid-second-ver-bar'></div>
-            <div className='grid-div' id='grid-div' onClick={onClick}>
+            <div className='grid-div' id='grid-div' onClick={setSelectedCell ? onClick : null}>
                 {gridArray}
             </div>
         </div>

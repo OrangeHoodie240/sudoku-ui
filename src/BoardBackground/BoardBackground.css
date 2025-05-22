@@ -1,0 +1,19 @@
+.board-background {
+    position:relative; 
+    padding:0;
+    max-width: fit-content;
+}
+
+.board-background-white-screen {
+    background-color: white;
+    margin:0;
+    max-width: fit-content;
+}
+
+
+.board-background-img {
+    z-index: -1;
+    position: absolute;
+    left: -200px;
+    transform: rotate(-35deg)
+}
