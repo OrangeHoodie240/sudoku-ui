@@ -44,6 +44,8 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
         }
 
         if (isBoardFull(sudoku) && valid) {
+            setShowVictory(true);
+
             const token = localStorage.getItem('token');
             const puzzle = '';
             const level = puzzleInfo.level;
@@ -74,7 +76,6 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
                     messageDiv.current.innerText = '';
                 }
             }
-            setShowVictory(true);
     }
 
     function resetBoard(puzzle) {
