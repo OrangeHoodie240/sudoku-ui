@@ -31,6 +31,7 @@
 
 .banner-button-div a{
     text-decoration: none;
+    color:white; 
 }
 .banner-button-div a:visited{
     color: white;

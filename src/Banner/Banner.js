@@ -29,10 +29,10 @@ const Banner = ({setRerenderState})=>{
                     {!!token ? <NavLink to="/" onClick={signOut}>Sign Out</NavLink> : null}
                 </div>
                 <div className='banner-button-div'>
-                    {location !== '/play' ? <NavLink to="/">Play</NavLink> : null}
+                    {location !== '/' ? <NavLink to="/">Play</NavLink> : null}
                 </div>
                 <div className='banner-button-div'>
-                    {location !== '/saved-puzzles' ? <NavLink to="/saved-puzzles">Saved Puzzles</NavLink> : null}
+                    {location !== '/saved-puzzles' && token ? <NavLink to="/saved-puzzles">Saved Puzzles</NavLink> : null}
                 </div>
                 
             </div>

@@ -6,10 +6,10 @@ const MagnifiedCell = ({selectedCell})=>{
     return (
         <div className='magnified-cell' id='magnified-cell'>
             <div className='magnified-cell-upper-cell'>
-                {selectedCell.children[0].innerText}
+              {selectedCell ?  selectedCell.children[0].innerText : null}
             </div>
             <div className='magnified-cell-lower-cell'>
-                {selectedCell.children[1].innerText}
+                {selectedCell ? selectedCell.children[1].innerText : null}
             </div>
         </div>
     )

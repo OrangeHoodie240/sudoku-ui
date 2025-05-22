@@ -1,3 +1,15 @@
+.hint-box {
+    grid-column: 3;
+    margin-top: 50px;
+}
+#hint-button {
+    cursor: pointer; 
+}
+#hint-button:hover{
+    border: solid #0285F1 1px;
+    border-radius: 10px;
+}
+
 .hint-message{
     padding: 5px;
     font-size: 15x;
@@ -5,5 +17,40 @@
 
 
 .solution-button {
-    display: block;
+    margin-right: 10px;
+}
+
+
+.hint-modal {
+    z-index: 3;
+    position: absolute; 
+    background-color: white;
+    max-width: fit-content;
+    top: -100px;
+}
+.hint-modal-invisible {
+    display: none !important; 
+}
+
+.hint-modal-button {
+    margin-left: 95%;
+    text-align: center;
+    width: 25px;
+    height: 25px;
+    padding: 2px;
+    border: solid black 1px; 
+    cursor: pointer;
+}
+
+.hint-modal-button:hover{
+    background-color: #014780;
+    color: white; 
+}
+
+.hint-content { 
+    padding: 12px; 
+    background-color: #014780;
+    color: white;
+    position:absolute; 
+    bottom: 200px; 
 }

@@ -6,6 +6,8 @@ import './SudokuBoard.css';
 import HintBox from "../HintBox/HintBox";
 import MagnifiedCell from '../MagnifiedCell/MagnifiedCell';
 
+import VictoryModal from "../VictoryModal/VictoryModal";
+
 const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
     const [selectedCell, setSelectedCell] = React.useState(null);
     const [invalidCell, setInvalidCell] = React.useState(null);
@@ -16,6 +18,7 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
     const [level, setLevel] = React.useState(null);
     const [puzzleId, setPuzzleId] = React.useState(null);
     const messageDiv = React.useRef(document.getElementById('message-div'));
+    const [showVictory, setShowVictory] = React.useState(false);
 
 
     const [isOn, setIsOn] = React.useState(true);
@@ -41,16 +44,37 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
         }
 
         if (isBoardFull(sudoku) && valid) {
-            if (messageDiv.current) {
-                messageDiv.current.innerText = 'You Win!';
+            const token = localStorage.getItem('token');
+            const puzzle = '';
+            const level = puzzleInfo.level;
+            const puzzleId = puzzleInfo.puzzleId;
+            const id = localStorage.getItem('id');
+            const method = 'PATCH'; 
+            const url = 'http://127.0.0.1:5000/saved-puzzles';
+            const obj = {
+                headers: { 'Content-Type': 'application/json' },
+                method,
+                body: JSON.stringify({ puzzle, level, puzzleId, token, id, complete: true })
+            };
+            
+            fetch(url, obj)
+            .then(resp => {
+                if (!resp.ok) {
+                    throw new Error('Error: Status', resp.status);
+                }
+                return resp.json();
+            })
+            .then(data => {
+                return data;
+            })
+            .catch(err => console.error(err));
             }
-        }
-        else {
-            if (messageDiv.current) {
-                messageDiv.current.innerText = '';
+            else {
+                if (messageDiv.current) {
+                    messageDiv.current.innerText = '';
+                }
             }
-        }
-
+            setShowVictory(true);
     }
 
     function resetBoard(puzzle) {
@@ -98,7 +122,6 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
 
     async function selectPuzzle(evt) {
         let level = evt.target.value;
-
         const data = await getPuzzle(level);
         const puzzle = data.puzzle;
         resetBoard(puzzle);
@@ -155,33 +178,27 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
 
     return (
         <div className='sudoku-board'>
+            {showVictory ? <VictoryModal setShowVictory={setShowVictory} selectPuzzle={selectPuzzle} puzzleInfo={puzzleInfo}/> : null }
 
             <div className='sudoku-board-sudoku-grid'>
                 <SudokuGrid setHintCell={setHintCell} hintCell={hintCell} setSelectedCell={setSelectedCell} invalidCell={invalidCell} sudoku={sudoku} puzzleInfo={puzzleInfo} originalSudoku={orignialSudoku.current} />
             </div>
-            {isOn ?
-                null
-                :
                 <div className='difficulty-selector'>
-                    <label for='difficulty-selector'>Difficulty: </label>
+                    <label for='difficulty-selector' id="difficulty-selector-label">Difficulty </label>
                     <select id='difficulty-selector' className='sudoku-board-select' onChange={selectPuzzle}>
                        <option value='one'>Level One</option>
                         <option value='two'>Level Two</option>
                         <option value='three'>Level Three</option>
                     </select>
                 </div>
-            }
             <div className='hint-box'>
-                {isOn ? null : <HintBox sudoku={sudoku} selectedCell={selectedCell} hintCell={hintCell} setHintCell={setHintCell} setSelectedCell={setSelectedCell} />}
+                <HintBox sudoku={sudoku} selectedCell={selectedCell} hintCell={hintCell} setHintCell={setHintCell} setSelectedCell={setSelectedCell} />
             </div>
-            {isOn ? 
-                null : 
-                selectedCell ? <div className='sudoku-board-magnified-cell'><MagnifiedCell selectedCell={selectedCell} /></div> : null
-            }
+                 <div className='sudoku-board-magnified-cell'><MagnifiedCell selectedCell={selectedCell} /></div>
             <div className='clearFloat'></div>
 
             <div className='sudoku-board-sudoku-pad'>
-                {isOn ? null : <SudokuPad selectedCell={selectedCell} setPuzzleInfo={setPuzzleInfo} update={update} sudoku={sudoku} setSudoku={setSudoku} />}
+                <SudokuPad selectedCell={selectedCell} setPuzzleInfo={setPuzzleInfo} update={update} sudoku={sudoku} setSudoku={setSudoku} />
             </div> 
         </div>
     );
