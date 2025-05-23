@@ -39,7 +39,6 @@
 @media screen and (max-width: 800px) {
     .sudoku-board{
         margin-left: 0; 
-        grid-template-columns: 100vh;
     }
 
     .sudoku-board-magnified-cell {

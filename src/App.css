@@ -1,3 +1,32 @@
+.app-seperator {
+  padding-top: 2%;
+  padding-left: 35%;
+  padding-right: 20%;
+  width: 100%
+}
+
+
+@media screen and (max-width: 1530px) {
+  .app-seperator{
+    padding-left: 168px;
+  }
+}
+
+
+@media screen and (max-width: 990px){
+  .app-seperator {
+    padding-left: 10px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .app-seperator{
+    padding-left: 0;
+  }
+}
+
+
+
 
 .App-logo {
   height: 40vmin;

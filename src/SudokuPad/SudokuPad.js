@@ -9,14 +9,14 @@ const SudokuPad = ({ selectedCell, sudoku, setSudoku, update, setPuzzleInfo}) =>
     const sudokuPadValues = React.useRef(null);
     const sudokuPadNotes = React.useRef(null);
 
-    React.useEffect(() => {
+    // React.useEffect(() => {
         // cellValuesToggleButton.current = document.getElementById('sudoku-pad-cell-values-toggle-button');
         // cellValuesToggleButton.current.addEventListener('click', onClickSudokuPadToggle);
-        notesToggleButton.current = document.getElementById('sudoku-pad-notes-toggle-button');
-        sudokuPadValues.current = document.getElementById('sudoku-pad-values');
-        sudokuPadNotes.current = document.getElementById('sudoku-pad-notes');
-        sudokuPadNotes.current.style.display = 'none';
-    }, [])
+        // notesToggleButton.current = document.getElementById('sudoku-pad-notes-toggle-button');
+        // sudokuPadValues.current = document.getElementById('sudoku-pad-values');
+        // sudokuPadNotes.current = document.getElementById('sudoku-pad-notes');
+        // sudokuPadNotes.current.style.display = 'none';
+    // }, [])
 
     function onClickValue({ target }) {
         if (!target.classList.contains('sudoku-pad-digit-button')) return;
@@ -205,6 +205,7 @@ const SudokuPad = ({ selectedCell, sudoku, setSudoku, update, setPuzzleInfo}) =>
 
     return (
         <div className={'sudoku-pad'}>
+        
             <div id='sudoku-pad-buttons'>
                 {/* <button id='sudoku-pad-cell-values-toggle-button' disabled>Cell Values</button> */}
                 {/* <button id="sudoku-pad-notes-toggle-button" onClick={onClickSudokuPadToggle} >Notes</button> */}
@@ -214,7 +215,7 @@ const SudokuPad = ({ selectedCell, sudoku, setSudoku, update, setPuzzleInfo}) =>
             </div>
             <div onClick={onClickNote} className='sudoku-pad-notes' id='sudoku-pad-notes'>
                 {/* {noteDivs} */}
-            </div>
+            </div> 
         </div>
 
     );

@@ -5,7 +5,7 @@ import getPuzzle, { copySudoku, isBoardFull, isBoardValid, getSpecificPuzzle } f
 import './SudokuBoard.css';
 import HintBox from "../HintBox/HintBox";
 import MagnifiedCell from '../MagnifiedCell/MagnifiedCell';
-
+import MobilePad from "../MobilePad/MobilePad";
 import VictoryModal from "../VictoryModal/VictoryModal";
 
 const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
@@ -178,6 +178,7 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
     return (
         <div className='sudoku-board'>
             {showVictory ? <VictoryModal setShowVictory={setShowVictory} selectPuzzle={selectPuzzle} puzzleInfo={puzzleInfo}/> : null }
+            <MobilePad selectedCell={selectedCell} setPuzzleInfo={setPuzzleInfo} />
 
             <div className='sudoku-board-sudoku-grid'>
                 <SudokuGrid setHintCell={setHintCell} hintCell={hintCell} setSelectedCell={setSelectedCell} invalidCell={invalidCell} sudoku={sudoku} puzzleInfo={puzzleInfo} originalSudoku={orignialSudoku.current} />
@@ -199,7 +200,9 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
             <div className='sudoku-board-sudoku-pad'>
                 <SudokuPad selectedCell={selectedCell} setPuzzleInfo={setPuzzleInfo} update={update} sudoku={sudoku} setSudoku={setSudoku} />
             </div> 
+        
         </div>
+
     );
 
 

@@ -1,0 +1,19 @@
+.mobile-pad {
+    display: none; 
+    width: 40%; 
+    position: absolute; 
+    z-index: 5;
+    top:0;
+    left: 20%;
+}
+
+
+
+@media screen and (max-width: 800px) {
+    .mobile-pad {
+        display: inline; 
+    }
+    .mobile-pad-invisible {
+        display: none;
+    }
+}

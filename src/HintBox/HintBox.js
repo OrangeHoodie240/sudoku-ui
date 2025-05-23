@@ -105,10 +105,9 @@ const HintBox = ({ setSelectedCell, setHintCell, selectedCell, hintCell, sudoku 
     return (
         <div className="hint-box">
             <img onClick={getHint} id='hint-button' src={hint} />
-            {/* <button onClick={getHint} id='hint-button'>Hint</button> */}
             <div className={display ? 'hint-modal' : 'hint-modal-invisible'}>
                 <div className="hint-modal-button" onClick={closeModal}>X</div>
-                <img src={detbot} />
+                <img className="hint-modal-img" src={detbot} />
                 <div className="hint-content">
                     <p>{hintMessage}</p>
                     <button onClick={viewSolution} className='solution-button'>See Solution</button>

@@ -33,7 +33,7 @@
 }
 
 .hint-modal-button {
-    margin-left: 95%;
+    margin-left: 85%;
     text-align: center;
     width: 25px;
     height: 25px;
@@ -53,4 +53,26 @@
     color: white;
     position:absolute; 
     bottom: 200px; 
+}
+
+
+@media screen and (max-width: 1165px){
+    .hint-modal-img {
+        width: 200px; 
+    }
+    .hint-content{
+        position: relative; 
+        bottom: 0; 
+    }
+
+}
+
+@media screen and (max-width: 830px) {
+    .hint-modal-img {
+        width: 200px; 
+    }
+    .hint-content{
+        position: relative; 
+        bottom: 0; 
+    }
 }
