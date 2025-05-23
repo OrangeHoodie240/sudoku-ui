@@ -178,7 +178,7 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
     return (
         <div className='sudoku-board'>
             {showVictory ? <VictoryModal setShowVictory={setShowVictory} selectPuzzle={selectPuzzle} puzzleInfo={puzzleInfo}/> : null }
-            <MobilePad selectedCell={selectedCell} setPuzzleInfo={setPuzzleInfo} />
+            <MobilePad selectedCell={selectedCell} setPuzzleInfo={setPuzzleInfo} sudoku={sudoku} setSudoku={setSudoku} />
 
             <div className='sudoku-board-sudoku-grid'>
                 <SudokuGrid setHintCell={setHintCell} hintCell={hintCell} setSelectedCell={setSelectedCell} invalidCell={invalidCell} sudoku={sudoku} puzzleInfo={puzzleInfo} originalSudoku={orignialSudoku.current} />
@@ -198,7 +198,7 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
             <div className='clearFloat'></div>
 
             <div className='sudoku-board-sudoku-pad'>
-                <SudokuPad selectedCell={selectedCell} setPuzzleInfo={setPuzzleInfo} update={update} sudoku={sudoku} setSudoku={setSudoku} />
+                <SudokuPad selectedCell={selectedCell}  setPuzzleInfo={setPuzzleInfo} update={update} sudoku={sudoku} setSudoku={setSudoku} />
             </div> 
         
         </div>
