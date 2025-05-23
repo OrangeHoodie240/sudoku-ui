@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-
+import { copySudoku } from '../helpers';
 import "./MobilePad.css";
 import robopad from './robo-pad.png';
 
 
 
 
-const MobilePad = ({selectedCell, setPuzzleInfo})=>{
+const MobilePad = ({selectedCell, setPuzzleInfo, sudoku, setSudoku})=>{
     const matrix = [[1,2,3], [4,5,6], [7,8,9]];
 
     const pad = React.useRef(null);
@@ -37,9 +37,7 @@ const MobilePad = ({selectedCell, setPuzzleInfo})=>{
                     else if(topDif >= 63 && topDif <= 86.3){
                         row = 3; 
                     }
-                    else{
-                        console.log('topDif: ', topDif);
-                    }
+
 
                     let col = -1; 
                     if(leftDif >= 11 && leftDif <= 32){
@@ -51,16 +49,14 @@ const MobilePad = ({selectedCell, setPuzzleInfo})=>{
                     else if(leftDif >= 64 && leftDif <= 87){
                         col = 3; 
                     }
-                    else{
-                        console.log(`leftDif: ${leftDif}`);
-                    }
+        
 
 
                     if(row === -1 || col === -1) return;
 
                     updateCell(matrix[row-1][col-1], cell);
                 }
-                pad.current.classList.add('mobile-pad-invisible'); 
+                // pad.current.classList.add('mobile-pad-invisible'); 
             });
 
             document.body.addEventListener('click', (evt)=>{
@@ -110,12 +106,17 @@ const MobilePad = ({selectedCell, setPuzzleInfo})=>{
 
         if (upperCellOfSelectedCell.innerText.trim() === value + '') {
             upperCellOfSelectedCell.innerText = '';
+            sudoku[row][col] = '0';
+            setSudoku(copySudoku(sudoku));
             setPuzzleInfo(puzzleInfo => ({...puzzleInfo}));
             return;
         }
 
         upperCellOfSelectedCell.innerText = value;
+        sudoku[row][col] = value;
+        setSudoku(copySudoku(sudoku));
         setPuzzleInfo(puzzleInfo => ({...puzzleInfo}));
+
 
     }
     return <></>;

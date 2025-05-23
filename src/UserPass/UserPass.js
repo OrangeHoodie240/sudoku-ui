@@ -83,13 +83,16 @@ const UserPass = (props)=>{
                 return data; 
             })
             .catch(console.log); 
-        if(result.success){
+        if(result?.success){
             if(location === '/login'){
                 localStorage.setItem('token',result.token);
                 localStorage.setItem('id', result.id);
 
             }
             navigate('/');
+        }
+        else if(result?.success === false){
+            setErrors("Invalid Username Or Password");
         }
     }
 
