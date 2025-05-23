@@ -1,3 +1,7 @@
+.sudoku-pad-pad-img {
+    display:none;
+}
+
 .sudoku-pad-values:focus, .sudoku-pad-notes:focus {
     outline: none;
 }
@@ -36,5 +40,12 @@ button:disabled {
     }
     .sudoku-pad-notes div, .sudoku-pad-values div{
         padding: 10px;
+    }
+
+
+    .sudoku-pad-pad-img{
+        display: inline;
+        position:absolute;
+        width: 90%;
     }
 }

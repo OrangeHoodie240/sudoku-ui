@@ -17,3 +17,9 @@
     left: -200px;
     transform: rotate(-35deg)
 }
+
+@media screen and (max-width: 990px) {
+    .board-background-img{
+        display: none;
+    }
+}

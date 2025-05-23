@@ -12,9 +12,9 @@
 
 .userpass-fields-container { 
     background-color: grey;
-    padding-top: .5vw;
+    padding-top: 20px;
     text-align: center;
-    width: 10vw; 
+    width: 225px; 
     top: 200px;
     left: 300px;
     position: absolute; 
@@ -49,4 +49,35 @@
 
 .userpass-errors {
     color:red; 
+}
+
+@media screen and (max-width: 1200px) {
+    .userpass {
+        position: absolute;
+        left:25%;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .userpass {
+        position : absolute;
+        left:0;
+    }
+}
+
+@media screen and (max-width: 530px){
+    .userpass {
+        position : absolute;
+        left:0;
+    }
+
+    .userpass-img {
+        width: 400px; 
+    }
+    
+    .userpass-fields-container {
+        left: 100px;
+        padding-left: 20px;
+        top:150px;
+    }
 }

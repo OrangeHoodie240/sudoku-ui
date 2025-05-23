@@ -26,7 +26,7 @@ function App() {
         <Route exact path="/login" element={<SubBanner header="Login" />}></Route>
         <Route exact path="/" element={<SubBanner header="Play!" puzzleInfo={puzzleInfo}/>}></Route>
       </Routes>
-      <div style={{paddingTop: '2%', paddingLeft: '35%', paddingRight: '20%', width: '100%'}}>
+      <div className="app-seperator">
         
         <Routes>
           <Route exact path="/" element={<BoardBackground><SudokuBoard setIsSavedPuzzleUsed={setIsSavedPuzzleUsed} setPuzzleInfo={setPuzzleInfo} puzzleInfo={puzzleInfo} /></BoardBackground>}></Route>
