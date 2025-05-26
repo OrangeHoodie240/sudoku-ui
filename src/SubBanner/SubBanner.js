@@ -20,7 +20,7 @@ function SubBanner({puzzleInfo, header}){
         const id = localStorage.getItem('id');
         const lastActiveSavedPuzzleId = +(localStorage.getItem('last-active-saved-puzzle-id'));
         const method = lastActiveSavedPuzzleId === puzzleId ? 'PATCH' : 'POST'; 
-        const url = 'http://127.0.0.1:5000/saved-puzzles';
+        const url = 'https://sudoku-api-nine.vercel.app/saved-puzzles';
         const obj = {
             headers: { 'Content-Type': 'application/json' },
             method,

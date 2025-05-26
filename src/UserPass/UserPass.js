@@ -70,7 +70,7 @@ const UserPass = (props)=>{
         if(errorMsg){
             return;
         }
-        const url = location === '/new-account' ?  'http://127.0.0.1:5000/authenticate/create-user' : 'http://127.0.0.1:5000/authenticate/login';
+        const url = location === '/new-account' ?  'https://sudoku-api-nine.vercel.app/authenticate/create-user' : 'https://sudoku-api-nine.vercel.app/authenticate/login';
         const result = await fetch(url, {method: 'post', body: JSON.stringify({email, password}), headers:{'Content-Type': 'application/json'}})
             .then(resp => {
                 if(!resp.ok){
