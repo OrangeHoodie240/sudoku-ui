@@ -13,7 +13,7 @@ const SavedPuzzles = ({ setPuzzleInfo, puzzleInfo }) => {
         async function loadSavedPuzzles() {
             const id = localStorage.getItem('id');
             const token = localStorage.getItem('token');
-            const url = 'http://127.0.0.1:5000/saved-puzzles/' + id + '?token=' + token;
+            const url = 'https://sudoku-api-nine.vercel.app/saved-puzzles/' + id + '?token=' + token;
 
             let resp = await fetch(url)
                 .then(resp => {
@@ -48,10 +48,13 @@ const SavedPuzzles = ({ setPuzzleInfo, puzzleInfo }) => {
         const level = target.getAttribute('data-level');
         const puzzleId = target.getAttribute('data-puzzle-id');
 
-        const url = 'http://127.0.0.1:5000/saved-puzzles';
+        const url = 'https://sudoku-api-nine.vercel.app/saved-puzzles';
         const token = localStorage.getItem('token');
         const id = localStorage.getItem('id');
-
+        const lastActiveSavedPuzzleId = localStorage.getItem('last-active-saved-puzzle-id'); 
+        if(puzzleId === lastActiveSavedPuzzleId){
+            localStorage.removeItem('last-active-saved-puzzle-id');
+        }
         const settings = {
             method: 'DELETE',
             body: JSON.stringify({ token, id, level, puzzleId }),

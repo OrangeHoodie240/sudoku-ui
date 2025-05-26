@@ -1,7 +1,7 @@
 
 
 async function getPuzzle(level) {
-    const url = 'http://127.0.0.1:5000/sudoku?level=' + level;
+    const url = 'https://sudoku-api-nine.vercel.app/sudoku?level=' + level;
     console.log(url);
     const puzzle = await fetch(url)
         .then(resp => {
@@ -19,7 +19,7 @@ async function getPuzzle(level) {
 }
 
 async function getSpecificPuzzle(level,id) {
-    const url = 'http://127.0.0.1:5000/sudoku/' + level + '/' + id;
+    const url = 'https://sudoku-api-nine.vercel.app/sudoku/' + level + '/' + id;
     const puzzle = await fetch(url)
         .then(resp => {
             if (!resp.ok) {

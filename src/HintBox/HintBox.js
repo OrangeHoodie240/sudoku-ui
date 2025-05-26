@@ -34,7 +34,7 @@ const HintBox = ({ setSelectedCell, setHintCell, selectedCell, hintCell, sudoku 
             difficultySettings.current.style.display = 'none'; 
 
             const flatPuzzle = flattenPuzzle(sudoku);
-            const url = 'http://127.0.0.1:5000/sudoku/analysis?puzzle=' + flatPuzzle;
+            const url = 'https://sudoku-api-nine.vercel.app/sudoku/analysis?puzzle=' + flatPuzzle;
             const data = await fetch(url)
                 .then(resp => {
                     if (!resp.ok) {
