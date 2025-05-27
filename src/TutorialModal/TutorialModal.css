@@ -1,0 +1,45 @@
+#tutorial-modal {
+    position: absolute; 
+    z-index: 5;
+    background-color: white;
+    max-width: fit-content;
+    width: 40vw;
+    border: solid 3px #014780;
+    border-radius: 10px;  
+    top:12%;
+    left: 30vw;
+    text-align: center;
+}
+
+.tutorial-modal-info-teacher-img{
+    position: absolute; 
+    right: 90%;
+    width: 40%;
+}
+
+.tutorial-modal-info-text{
+    padding:15px; 
+    text-align: justify;
+}
+.tutorial-modal-info-img{
+    width: 80%;
+}
+.tutorial-modal-background {
+    z-index: 4;
+    width: 100vw; 
+    height: 100vw; 
+    opacity: .3;
+    background-color: grey;
+    position:absolute; 
+    top:0; 
+    left:0;
+}
+
+.tutorial-modal-close-button{
+    margin-left: 90%;
+    margin-top: 20px;
+}
+.tutorial-modal-close-button:hover {
+    background-color: #014780;
+    color:white; 
+}

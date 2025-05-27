@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import SudokuGrid from "../SudokuGrid/SudokuGrid";
 import './SavedPuzzles.css';
 
-const SavedPuzzles = ({ setPuzzleInfo, puzzleInfo }) => {
+const SavedPuzzles = ({ setPuzzleInfo, puzzleInfo}) => {
     const [savedPuzzles, setSavedPuzzles] = React.useState([]);
     const navigate = useNavigate();
 
@@ -38,6 +38,7 @@ const SavedPuzzles = ({ setPuzzleInfo, puzzleInfo }) => {
         [puzzle, notes] = convertDBPuzzle(puzzle);
         const puzzleId = +(target.getAttribute('data-puzzle-id'));
         localStorage.setItem('last-active-saved-puzzle-id', puzzleId);
+        
         setPuzzleInfo(p => ({ level, puzzle, puzzleId, notes }));
         navigate('/');
     }

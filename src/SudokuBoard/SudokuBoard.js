@@ -17,9 +17,7 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
     const [hintCell, setHintCell] = React.useState(null);
     const [level, setLevel] = React.useState(null);
     const [puzzleId, setPuzzleId] = React.useState(null);
-    const messageDiv = React.useRef(document.getElementById('message-div'));
     const [showVictory, setShowVictory] = React.useState(false);
-
 
     const [isOn, setIsOn] = React.useState(true);
 
@@ -43,39 +41,40 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
             setInvalidCell(null);
         }
 
-        if (isBoardFull(sudoku) && valid) {
+        if (isBoardFull(sudoku) && valid && !showVictory) {
             const token = localStorage.getItem('token');
-            const puzzle = '';
-            const level = puzzleInfo.level;
             const puzzleId = puzzleInfo.puzzleId;
-            const id = localStorage.getItem('id');
-            const method = 'PATCH'; 
-            const url = 'https://sudoku-api-nine.vercel.app/saved-puzzles';
-            const obj = {
-                headers: { 'Content-Type': 'application/json' },
-                method,
-                body: JSON.stringify({ puzzle, level, puzzleId, token, id, complete: true })
-            };
-            
-            fetch(url, obj)
-            .then(resp => {
-                if (!resp.ok) {
-                    throw new Error('Error: Status', resp.status);
-                }
-                return resp.json();
-            })
-            .then(data => {
-                setShowVictory(true);   
-            })
-            .catch(err => console.error(err));
-            }
-            else {
-                if (messageDiv.current) {
-                    messageDiv.current.innerText = '';
-                }
-            }
-    }
 
+            if(token && +(localStorage.getItem('last-active-saved-puzzle-id')) === puzzleId){
+                const puzzle = '';
+                const level = puzzleInfo.level;
+                const id = localStorage.getItem('id');
+                const method = 'PATCH'; 
+                const url = 'https://sudoku-api-nine.vercel.app/saved-puzzles';
+                const obj = {
+                    headers: { 'Content-Type': 'application/json' },
+                    method,
+                    body: JSON.stringify({ puzzle, level, puzzleId, token, id, complete: true })
+                };
+                
+                fetch(url, obj)
+                .then(resp => {
+                    if (!resp.ok) {
+                        throw new Error('Error: Status', resp.status);
+                    }
+                    return resp.json();
+                })
+                .then(data => {
+                    setShowVictory(true);   
+                })
+                .catch(err => console.error(err));
+                }
+            else{
+                setShowVictory(true);
+            }
+
+        }
+    }
     function resetBoard(puzzle) {
         // reset grid
         const gridDiv = document.querySelector('#grid-div');
@@ -194,7 +193,7 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
             <div className='hint-box'>
                 <HintBox sudoku={sudoku} selectedCell={selectedCell} hintCell={hintCell} setHintCell={setHintCell} setSelectedCell={setSelectedCell} />
             </div>
-                 <div className='sudoku-board-magnified-cell'><MagnifiedCell selectedCell={selectedCell} /></div>
+                 <div className='sudoku-board-magnified-cell'><MagnifiedCell selectedCell={selectedCell} puzzleInfo={puzzleInfo} /></div>
             <div className='clearFloat'></div>
 
             <div className='sudoku-board-sudoku-pad'>

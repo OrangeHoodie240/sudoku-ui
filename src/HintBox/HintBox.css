@@ -16,8 +16,10 @@
 }
 
 
-.solution-button {
+.hint-solution-button {
     margin-right: 10px;
+    margin-top: 20px; 
+    display: box;
 }
 
 
@@ -55,6 +57,19 @@
     bottom: 200px; 
 }
 
+
+.hint-message-strategy-button {
+    color:white; 
+    border: 1px white solid; 
+    cursor: pointer;
+    background-color: grey;
+    padding: 5px;
+    border-radius: 10px; 
+}
+
+.hint-message-strategy-button:hover {
+    padding: 7px;
+}
 
 @media screen and (max-width: 1165px){
     .hint-modal-img {
