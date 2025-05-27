@@ -3,16 +3,20 @@ import { flattenPuzzle } from "../helpers";
 import './HintBox.css';
 import detbot from './holmes.png';
 import hint from './hint.png'; 
+import TutorialModal from "../TutorialModal/TutorialModal";
 
 const HintBox = ({ setSelectedCell, setHintCell, selectedCell, hintCell, sudoku }) => {
     const [hintMessage, setHintMessage] = useState(null);
     const [hintValue, setHintValue] = useState(null);
-
     const [display, setDisplay] = React.useState(false);
+    const [showTutorialModal, setShowTutorialModal] = React.useState(false);    
+    const [selectedStrategy, setSelectedStrategy] = React.useState('');
 
     const magnifiedCell = React.useRef(null);
     const hintButton = React.useRef(null);
     const difficultySettings = React.useRef(null);
+
+
     useEffect(()=>{
         magnifiedCell.current = document.querySelector('.sudoku-board-magnified-cell'); 
         hintButton.current = document.querySelector('#hint-button');
@@ -63,8 +67,10 @@ const HintBox = ({ setSelectedCell, setHintCell, selectedCell, hintCell, sudoku 
 
                 document.querySelector('#sudoku-pad-values').focus();
 
-                let message = 'The green cell can be solved with ' + solveWith;
-                setHintMessage(message);
+                let message = 'The green cell can be solved by ';
+                message += solveWith.length > 1 ? 'combining ' : 'using '; 
+
+                setHintMessage({message, strategies: solveWith});
                 setHintValue(value);
                 setDisplay(true);
             }   
@@ -102,15 +108,31 @@ const HintBox = ({ setSelectedCell, setHintCell, selectedCell, hintCell, sudoku 
     }
 
 
+    let strategyButtons = null;
+    if(hintMessage?.strategies){
+        strategyButtons = hintMessage?.strategies.map(strategy => {
+                const onClick = ()=>{
+                    setSelectedStrategy(strategy);
+                    setShowTutorialModal(strategy);
+                };
+                let strategyText = strategy.replace(/-/g, ' ');
+                strategyText = strategyText.replace(/{.*}/g, "");
+                return <a key={`strategy-button-${strategy}`} className='hint-message-strategy-button' onClick={onClick}>{strategyText}</a>;
+            });
+    }
+
     return (
         <div className="hint-box">
+            {showTutorialModal ? <TutorialModal strategy={selectedStrategy} setShowTutorialModal={setShowTutorialModal} /> : null}
             <img onClick={getHint} id='hint-button' src={hint} />
             <div className={display ? 'hint-modal' : 'hint-modal-invisible'}>
                 <div className="hint-modal-button" onClick={closeModal}>X</div>
                 <img className="hint-modal-img" src={detbot} />
                 <div className="hint-content">
-                    <p>{hintMessage}</p>
-                    <button onClick={viewSolution} className='solution-button'>See Solution</button>
+                    <p>{hintMessage?.message}</p>
+                    {strategyButtons}
+                    <br />
+                    <button onClick={viewSolution} className='hint-solution-button'>See Solution</button>
                     <span id='solution'></span>
                 </div>
 
