@@ -24,6 +24,15 @@ const SavedPuzzles = ({ setPuzzleInfo, puzzleInfo}) => {
                 })
                 .then(data => data)
                 .catch(err => console.error(err));
+
+
+            resp.puzzles.sort((a,b)=>{
+                a = a.updated && a.created ? a.updated : a.created;
+                a = new Date(a);
+                b = b.updated && b.created ? b.updated : b.created;
+                b = new Date(b);
+                return b - a;
+            });
             setSavedPuzzles(resp.puzzles);
         }
         loadSavedPuzzles();
@@ -86,10 +95,26 @@ const SavedPuzzles = ({ setPuzzleInfo, puzzleInfo}) => {
     }
 
 
+
     const puzzleList = savedPuzzles.map(puzzle => {
         const {puzzleCells, puzzleNotes} = JSON.parse(puzzle.puzzle); 
+        let created = new Date(puzzle.created); 
+        created = `${created.getFullYear()}/${created.getMonth() + 1}/${created.getDate()}`;
+        
+        let updated = puzzle.updated ? new Date(puzzle.updated) : null; 
+        if(updated){
+            updated = `${updated.getFullYear()}/${updated.getMonth() + 1}/${updated.getDate()}`;
+        }
+
+
         return (
         <li className="saved-puzzles-li" data-level={puzzle.level} data-puzzle={puzzle.puzzle} data-puzzle-id={puzzle.puzzle_id}>Puzzle Level {puzzle.level} <button onClick={onLoadPuzzle}>Load</button> <button onClick={onDeletePuzzle}>Delete</button>
+                <p>
+                    <span>Save Created: {created}</span> &nbsp;  &nbsp;
+                    {updated ? <span>Saved Last:{updated}</span> : null}
+                
+                </p> 
+                
                 <div style={{marginTop: '10px'}}>
                     <SudokuGrid puzzleInfo={{puzzle: puzzleCells, notes: puzzleNotes}} />
                 </div>
