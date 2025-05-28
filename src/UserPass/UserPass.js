@@ -73,16 +73,13 @@ const UserPass = (props)=>{
         const url = location === '/new-account' ?  'https://sudoku-api-nine.vercel.app/authenticate/create-user' : 'https://sudoku-api-nine.vercel.app/authenticate/login';
         const result = await fetch(url, {method: 'post', body: JSON.stringify({email, password}), headers:{'Content-Type': 'application/json'}})
             .then(resp => {
-                if(!resp.ok){
-                    throw new Error("Error: " + resp.status);
-                }
                 return resp.json();
 
             })
             .then(data => {
                 return data; 
-            })
-            .catch(console.log); 
+            });
+
         if(result?.success){
             if(location === '/login'){
                 localStorage.setItem('token',result.token);
@@ -91,8 +88,20 @@ const UserPass = (props)=>{
             }
             navigate('/');
         }
-        else if(result?.success === false){
-            setErrors("Invalid Username Or Password");
+        else if(result?.error){
+            let error = result.error;
+            if(error.status >= 400 < error.status < 500){
+                // can possibly create unique error codes in the future
+                if(error.message.toLowerCase().indexOf('user already exists')){
+                    setErrors("Email already associated with an account")
+                }
+                else{
+                    setErrors("Invalid Username Or Password");
+                }
+            }
+            else if(error.status >= 500){
+                setErrors("Server side error. Please try again later.");
+            }
         }
     }
 
