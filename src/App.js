@@ -23,6 +23,7 @@ function App() {
       <Banner setRerenderState={setRerenderState}></Banner>
       <Routes>
         <Route exact path="/new-account" element={<SubBanner header="Create Account" />}></Route>
+        <Route exact path="/verification" element={<SubBanner header="Verification Email" />}></Route>
         <Route exact path="/login" element={<SubBanner header="Login" />}></Route>
         <Route exact path="/" element={<SubBanner header="Play!" puzzleInfo={puzzleInfo}/>}></Route>
       </Routes>
@@ -32,6 +33,7 @@ function App() {
           <Route exact path="/" element={<BoardBackground><SudokuBoard setIsSavedPuzzleUsed={setIsSavedPuzzleUsed} setPuzzleInfo={setPuzzleInfo} puzzleInfo={puzzleInfo} /></BoardBackground>}></Route>
           <Route exact path="/new-account" element={<UserPass />} />
           <Route exact path="/login" element={<UserPass />} />
+          <Route exact path="/verification" element={<UserPass />}/>
           <Route exact path="/saved-puzzles" element={<SavedPuzzles setPuzzleInfo={setPuzzleInfo} puzzleInfo={puzzleInfo} />} />
         </Routes>
 

@@ -26,6 +26,9 @@ const Banner = ({setRerenderState})=>{
                     {location !== '/login' && !token ? <NavLink to="/login">Login</NavLink> : null}
                 </div>
                 <div className='banner-button-div'>
+                    {location ==='/new-account' && !token ? <NavLink to="/verification">Email Verification</NavLink> : null}
+                </div>
+                <div className='banner-button-div'>
                     {!!token ? <NavLink to="/" onClick={signOut}>Sign Out</NavLink> : null}
                 </div>
                 <div className='banner-button-div'>
