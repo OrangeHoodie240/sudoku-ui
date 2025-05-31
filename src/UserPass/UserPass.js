@@ -11,9 +11,10 @@ const UserPass = (props)=>{
     const emailEl = React.useRef(null); 
     const passEl = React.useRef(null);
     const location = useLocation().pathname; 
+    const isVerificationCode = location === '/verification' ? true : false; 
     useEffect(()=>{
         emailEl.current = document.querySelector('input[name="email"]'); 
-        passEl.current = document.querySelector('input[name="password"]'); 
+        passEl.current = document.querySelector(`input[name="password"]`); 
         if(state.email || state.password) setState({email: '', password: ''});
     }, [location]); 
 
@@ -70,8 +71,9 @@ const UserPass = (props)=>{
         if(errorMsg){
             return;
         }
-        const url = location === '/new-account' ?  'https://sudoku-api-nine.vercel.app/authenticate/create-user' : 'https://sudoku-api-nine.vercel.app/authenticate/login';
-        const result = await fetch(url, {method: 'post', body: JSON.stringify({email, password}), headers:{'Content-Type': 'application/json'}})
+        const url = location === '/new-account' || location === '/verification' ?  'https://sudoku-api-nine.vercel.app/verification' : 'https://sudoku-api-nine.vercel.app/authenticate/login';
+        const body = isVerificationCode ? JSON.stringify({email, verification: password}) : JSON.stringify({email, password});
+        const result = await fetch(url, {method: isVerificationCode ? 'put' : 'post', body, headers:{'Content-Type': 'application/json'}})
             .then(resp => {
                 return resp.json();
 
@@ -86,7 +88,15 @@ const UserPass = (props)=>{
                 localStorage.setItem('id', result.id);
 
             }
-            navigate('/');
+            if(location === '/new-account'){
+                navigate("/verification");
+            }
+            else if(location === '/verification'){
+                navigate("/login");
+            }
+            else{
+                navigate('/');
+            }
         }
         else if(result?.error){
             let error = result.error;
@@ -119,7 +129,7 @@ const UserPass = (props)=>{
                     <img src={cog} className='userpass-img' />
                     <div className="userpass-fields-container" >
                         <input onKeyUp={onEnter} type='field' onChange={onChange} value={state.email} name='email' placeholder='Email'/>
-                        <input onKeyUp={onEnter} type='password' onChange={onChange} value={state.password} name='password' placeholder='Password'/>
+                        <input onKeyUp={onEnter} type={isVerificationCode ? 'text' : 'password'} onChange={onChange} value={state.password} name='password' placeholder={isVerificationCode ? 'Verification Code' : 'password'}/>
                         <button onClick={onClick}>{location === '/new-account' ? 'Register' : 'Login'}</button>
                     </div>
                 </div>
