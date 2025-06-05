@@ -130,7 +130,7 @@ const UserPass = (props)=>{
                     <div className="userpass-fields-container" >
                         <input onKeyUp={onEnter} type='field' onChange={onChange} value={state.email} name='email' placeholder='Email'/>
                         <input onKeyUp={onEnter} type={isVerificationCode ? 'text' : 'password'} onChange={onChange} value={state.password} name='password' placeholder={isVerificationCode ? 'Verification Code' : 'password'}/>
-                        <button onClick={onClick}>{location === '/new-account' ? 'Register' : 'Login'}</button>
+                        <button onClick={onClick}>{location === '/new-account' ? 'Register' : isVerificationCode ? 'Verify Account' : 'Login'}</button>
                     </div>
                 </div>
 

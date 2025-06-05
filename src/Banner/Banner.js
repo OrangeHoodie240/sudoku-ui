@@ -19,24 +19,12 @@ const Banner = ({setRerenderState})=>{
             <h1 className="banner-header bungee-shade-regular banner-header">Cyber Sudoku</h1>
             <img className="banner-image" src={botImg} />
             <div className='banner-buttons-div'>
-                <div className='banner-button-div'>
-                    {location !== '/new-account' && !token ? <NavLink to="/new-account">Create Account</NavLink> : null}
-                </div>
-                <div className='banner-button-div'>
-                    {location !== '/login' && !token ? <NavLink to="/login">Login</NavLink> : null}
-                </div>
-                <div className='banner-button-div'>
-                    {location ==='/new-account' && !token ? <NavLink to="/verification">Email Verification</NavLink> : null}
-                </div>
-                <div className='banner-button-div'>
-                    {!!token ? <NavLink to="/" onClick={signOut}>Sign Out</NavLink> : null}
-                </div>
-                <div className='banner-button-div'>
-                    {location !== '/' ? <NavLink to="/">Play</NavLink> : null}
-                </div>
-                <div className='banner-button-div'>
-                    {location !== '/saved-puzzles' && token ? <NavLink to="/saved-puzzles">Saved Puzzles</NavLink> : null}
-                </div>
+                {location !== '/new-account' && !token ? <div className='banner-button-div'><NavLink to="/new-account">Create Account</NavLink></div> : null}
+                {location !== '/login' && !token ? <div className='banner-button-div'><NavLink to="/login">Login</NavLink></div> : null}
+                {location ==='/new-account' && !token ? <div className='banner-button-div'><NavLink to="/verification">Email Verification</NavLink></div> : null}
+                {!!token ? <div className='banner-button-div'><NavLink to="/" onClick={signOut}>Sign Out</NavLink></div> : null}
+                {location !== '/' ? <div className='banner-button-div'><NavLink to="/">Play</NavLink></div> : null}
+                {location !== '/saved-puzzles' && token ? <div className='banner-button-div'><NavLink to="/saved-puzzles">Saved Puzzles</NavLink></div> : null}
                 
             </div>
 
