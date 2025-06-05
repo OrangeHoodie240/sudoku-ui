@@ -56,7 +56,12 @@ const MobilePad = ({selectedCell, setPuzzleInfo, sudoku, setSudoku})=>{
 
                     updateCell(matrix[row-1][col-1], cell);
                 }
-                // pad.current.classList.add('mobile-pad-invisible'); 
+
+                setTimeout(()=>{
+                    if(!cell.classList.contains('invalid-cell')){
+                        pad.current.classList.add('mobile-pad-invisible'); 
+                    }
+                }, 0);
             });
 
             document.body.addEventListener('click', (evt)=>{
